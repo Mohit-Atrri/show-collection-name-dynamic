@@ -1,0 +1,25 @@
+ // Show collection name on cart page jquery start
+        var urlParams = '';
+        var lastcoll = '';
+        var  productName  = [];
+        var mycolname = proid ='';
+        var data = '';
+ 
+        $('.card__content').click(function(){
+            proid = $(this).find('.custom-product').attr('data-id');
+            urlParams = window.location.pathname;
+            mycolname  = urlParams.split('/collections/')[1];
+           data = {};
+           data.mycolname = mycolname;
+           data.proid = proid;
+           productName.push("pid-"+proid);
+           localStorage.setItem("pid-"+proid,  mycolname);
+        });
+        jQuery(document).ready(function(){
+          jQuery('table.cart-items tbody tr').each(function(){
+              var itemsIDCat = jQuery(this).attr('data-id');
+              var getCatName = localStorage.getItem('pid-'+itemsIDCat);
+              jQuery(this).find('td.cart-item__details').prepend("<p class='cat-name'>"+getCatName+"</p>");
+          });
+          
+       // Show collection name on cart page jquery end
